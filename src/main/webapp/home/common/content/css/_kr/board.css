@@ -1,0 +1,106 @@
+@charset "utf-8";
+
+/* 게시판 버튼 */
+.board_butt {width:100%;}
+.board_butt a {display:inline-block; vertical-align:top; padding:8px 25px;}
+.board_butt a.ty1 {background:#616161; color:#fff;}
+.board_butt a.ty2 {background:#209b52; color:#fff;}
+.board_butt input.ty2 {background:#209b52; color:#fff;border:none;padding:12px 25px;height:auto;font-size:14px;}
+.qna_answer_n {background:#3c5899; padding:5px; color:#fff; text-align:center; display:inline-block; width:60px;}
+.qna_answer_y {background:#25a057; padding:5px; color:#fff; text-align:center; display:inline-block; width:60px;}
+input[type="submit"].btn_find {height:34px;}
+
+/* paginate */
+.paginate {width:100%; text-align:center; margin-top:30px;}
+.paginate * {display:inline-block; vertical-align:middle; margin:0;}
+.paginate a {display:inline-block; vertical-align:top; width:28px; height:28px; line-height:28px; border:1px solid #e6e6e6;}
+.paginate a.first {display:inline-block; margin-right:5px;}
+.paginate a.last{display:inline-block; margin-left:5px;}
+.paginate a:hover, .paginate a:active, .paginate a:focus{background:#616161; color:#fff; border:1px solid #616161;}
+.paginate strong {display:inline-block; vertical-align:top; width:28px; height:28px; line-height:28px; text-align:center; background:#616161; border:1px solid #616161; color:#fff; font-weight:normal; overflow:hidden;}
+.paginate .dir {background:#fff; width:28px; height:28px; padding:0;}
+.paginate .dir img {display:block;}
+.paginate .dir:hover,.paginate .dir:active,.paginate .dir:focus {border:1px solid #616161; background:#fff;}
+
+
+/*** 일반형 타입 게시판 ***/
+	/* 리스트 */
+	.board_list_info {margin:0 0 10px 0; width:100%; height:auto; overflow:hidden;}
+	.board_list_info:after {content:""; display:block; clear:both;}
+	.board_list_info .page_num {margin:6px 0 0 0; float:left;}
+	.board_find {border:none; float:right;}
+	.board_find select, .board_find input {vertical-align:middle;}
+	
+	.board_list table {border-top:2px solid #5e5e5e; margin:10px 0 0 0;}
+	.board_list table th {padding:10px; border-bottom:1px solid #aeaeae; border-left:1px solid #e2e2e2; background:#fcfcfc; color:#4d5876;}
+	.board_list table th a{color:#4d5876;}
+	.board_list table td {padding:10px; border-bottom:1px solid #e2e2e2; border-left:1px solid #e2e2e2; text-align:center;}
+	/*.board_list table td.notice {padding:10px;border-bottom:1px solid #dde2e8;font-size:12px; background:#f1f4f7;}*/
+	.board_list table td.title {text-align:left;}
+	.board_list table td.title a {display:inline-block; vertical-align:top; text-overflow:ellipsis; white-space:nowrap; overflow:hidden; width:auto; max-width:93%; margin-right:5px;}
+	.board_list table td.title a:hover, .board_list table td.title a:active, .board_list table td.title a:focus {text-decoration:underline;}
+	.board_list table td.title img {display:inline-block; vertical-align:top; margin-top:4px;}
+	.board_list table .bor_no {border-left:0;}
+	.board_list table td img.lock {margin-right:7px;}
+	.board_list table .num {width:60px; border-left:0;}
+	.board_list table .qna_type {width:120px;}
+	.board_list table .qna_type span {display:block;}
+	.board_list table .title {width:auto;}
+	.board_list table .writer {width:90px;}
+	.board_list table .date {width:100px;}
+	.board_list table .hits {width:70px;}
+	.board_list table .file {width:70px;}
+	.board_list table .answer {width:100px;}
+	
+	/* 글쓰기 */
+	.board_writeInfo {width:100%; height:auto; border-top:2px solid #5e5e5e;}
+	.board_writeInfo:after {content:""; display:block; clear:both;}
+	.board_writeInfo li {padding:10px 0 10px 110px; border-bottom:1px solid #e2e2e2; position:relative;}
+	.board_writeInfo li span {display:inline-block;}
+	.board_writeInfo li span.title {font-weight:600; font-size:15px; display:block; position:absolute; left:0; top:10px; border-right:1px solid #e2e2e2; width:95px; height:34px; line-height:34px;}
+	.board_writeInfo li span.input {width:100%;}
+	.board_writeInfo li select {height:36px; line-height:30px;}
+	.board_writeInfo li input {height:26px; line-height:26px;}
+	
+	
+	
+@media all and (max-width:840px){
+.board_list table .date {display:none;}
+.board_list table .hits {display:none;}
+.board_list table .file {display:none;}
+}
+
+@media all and (max-width:640px){
+.board_list table .num {display:none;}
+.board_list table .qna_type {border-left:0;}
+.board_list table .writer {display:none;}
+}
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

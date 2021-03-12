@@ -1,0 +1,5 @@
+
+  
+.chart2 .cntnts_select_ul{width: 95%;height: 40px;margin: 0 auto;}
+.chart2 .cntnts_select_li{width: 24%;border-radius: 10px 10px 0 0;border: 1px solid #979797;background-color: #F2F2F2;height: 40px;float: left;color: #979797;font-size: 18px;text-align: center;padding-top: 7px;cursor: pointer;}
+.chart2 .cntnts_select_li.active{border: 1px solid #595959;background-color: #595959;color: #FFF;font-weight: 800;}

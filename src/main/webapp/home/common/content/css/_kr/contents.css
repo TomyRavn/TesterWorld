@@ -1,0 +1,190 @@
+@charset "utf-8";
+
+/* 모집요강 */
+.viewer_down {width:auto; padding:10px 2%; min-height:32px; border:1px solid #e2e2e2; background:url(/Img/kr/contents/viewer_down_bg.gif) repeat left top; margin-bottom:30px; position:relative;}
+.viewer_down p {font-weight:600; margin:0; font-size:16px; padding:3px 0 0 0;}
+.viewer_down .down_btn {display:block; position:absolute; right:2%; top:10px;}
+.viewer_down .down_btn a {display:inline-block; vertical-align:top; border:1px solid #e2e2e2; font-size:13px; padding:5px 10px 5px 40px; height:20px; font-weight:600; margin-left:10px;}
+.viewer_down .down_btn a.pdf {background:#fff url(/Img/kr/contents/down_btn_pdf.jpg) no-repeat left top;}
+.viewer_down .down_btn a.hwp {background:#fff url(/Img/kr/contents/down_btn_hwp.jpg) no-repeat left top;}
+.pdf_viewer {width:auto; height:auto; padding:0 0 0 230px; position:relative;}
+.pdf_viewer .tab {position:absolute; left:0; top:0; width:230px; height:auto; border-top:1px solid #ccc;}
+.pdf_viewer .tab li {border-bottom:1px solid #ccc;}
+.pdf_viewer .tab li a {display:block; padding:10px 15px; border-bottom:2px solid #fff; font-size:13px; -webkit-transition: all .3s ease; transition: all .3s ease;}
+.pdf_viewer .tab li a.ov, .pdf_viewer .tab li a:hover, .pdf_viewer .tab li a:active {color:#249f56; font-weight:600; border-bottom:2px solid #249f56;}
+.pdf_viewer .view {width:100%; height:auto;}
+.pdf_viewer .view iframe {width:100%; height:1044px;}
+.pdf_viewer .mobile {display:none;}
+
+/* 모집요강 신청 */
+.infor_agree {width:100%; text-align:center; margin:10px 0 40px 0;}
+.infor_agree input[type="radio"]+label {margin-right:20px;}
+.policy_agree {width:100%; text-align:center; margin:0 0 10px 0;} 
+.policy_agree input[type="radio"]+label {margin-right:20px;}
+input[type="submit"].appli_find {background:#616161; font-size:13px; border:0; height:32px; padding:0 12px; width:auto;}
+input[type="text"].input_ty1 {width:45px; min-width:45px;}
+input[type="text"].input_ty2 {width:25%; min-width:120px;}
+input[type="text"].input_ty3 {width:96%;}
+.appli_btn {width:100%; margin-top:30px;}
+.appli_btn:after {content:""; display:block; clear:both;}
+.appli_btn a {display:inline-block; vertical-align:top; padding:10px 25px; color:#fff; font-size:16px; line-height:21px;}
+.appli_btn a.btn_ty1 {background:#3c97cb;}
+.appli_btn a.btn_ty2 {background:#616161;}
+.appli_btn a.btn_ty3 {background:#26a057;}
+.appli_confirm {border:1px solid #e2e2e2; background:url(/Img/kr/contents/viewer_down_bg.gif) repeat left top; padding:20px 3%; margin-top:40px;}
+.appli_confirm .form {background:#fff; border:1px solid #e2e2e2; padding:25px 3%; text-align:center;}
+.appli_confirm .form ul.input {width:290px; display:inline-block; vertical-align:top;}
+.appli_confirm .form ul.input li {margin-top:5px; position:relative; padding:0 0 0 55px;}
+.appli_confirm .form ul.input li:first-child {margin-top:0px;}
+.appli_confirm .form ul.input li span {display:block; text-align:left;}
+.appli_confirm .form ul.input li span.title {font-weight:600; width:50px; height:32px; line-height:30px; position:absolute; left:0; top:0;} 
+.appli_confirm .form ul.input li span.input input[type="text"].input_ty2 {width:220px;}
+.appli_confirm .form input[type="submit"] {width:80px; height:69px; display:inline-block; vertical-align:top; font-size:16px; padding:0; border:0; background:#616161;}
+.appli_confirm .form ul.result {width:auto; display:inline-block; vertical-align:top;}
+.appli_confirm .form ul.result li {margin-top:5px; text-align:left;}
+.appli_confirm .form ul.result li:first-child {margin-top:0px;}
+.basic_table  #zip1{width:80px}
+
+/* 신입학전형안내 동영상 */
+.gallery_board_list {width:100%; height:auto; overflow:hidden;}
+.gallery_board_list:after {content:""; display:block; clear:both;}
+.gallery_board_list li {float:left; width:23.5%; margin:0 0 15px 2%;}
+.gallery_board_list li:first-child {margin-left:0;}
+.gallery_board_list li + li + li + li + li {margin-left:0;} 
+.gallery_board_list li + li + li + li + li + li {margin-left:2%;}
+.gallery_board_list li a {display:block; border:2px solid #e2e2e2; padding:10px; text-decoration:none;
+-webkit-transition: all .3s ease; transition: all .3s ease;}
+.gallery_board_list li a span.poster {display:block; width:100%; height:150px; margin:0 0 15px 0; overflow:hidden; position:relative; background:#a1a1a1;} 
+.gallery_board_list li a span.poster img {display:block; height:100%; margin:0 auto;}
+.gallery_board_list li a .subject {font-weight:600; color:#383838; font-size:1.071em; width:auto; max-width:100%; margin:0 0 10px 0; white-space:nowrap; text-overflow:ellipsis; overflow:hidden;}
+.gallery_board_list li a .date {color:#858585; font-size:0.929em; margin:0; background:url(/Img/kr/contents/date_ico.png) no-repeat left 50%; padding:0 0 0 20px;}
+.gallery_board_list li a:hover, .gallery_board_list li a:active {border:2px solid #249f56; background:#fafafa;}
+.gallery_board_list li a:hover .subject, .gallery_board_list li a:active .subject {text-decoration:underline; color:#0f8d42;}
+
+
+.down-ico{background:url(/Img/kr/common/dwon-ico.gif) no-repeat 10px 9px; display:inline-block; padding:4px 10px 4px 31px; border:1px solid #D8D8D8; font-size:14px !important; margin-left:10px; transition: all .3s ease; color:#00806e !important; font-weight:600 !important}
+.down-ico:hover{ border:1px solid #666}
+
+/* 학생부종합전형 */
+.human_resource {width:100%;}
+.human_resource img {max-width:100%; display:block; margin:0 auto;}
+.fairness_step {width:48%; height:auto; float:left;}
+.fairness_step dt {font-size:18px; line-height:24px; padding:10px; font-weight:600; border-bottom:1px solid #a7a9ac; text-align:center;}
+.fairness_step dd {padding-top:20px;}
+.fairness_step dd ul {width:100%;}	
+.fairness_step dd ul li {padding-bottom:26px; background:url(/Img/kr/contents/fairness_step_bul1.jpg) no-repeat center 88%; font-weight:600;}
+.fairness_step dd ul li.last {padding:0; background:none;}
+.fairness_step dd ul li span {display:block; border:1px solid #1fb15a; color:#1fb15a; padding:7px 10px; text-align:center;}
+.fairness_step dd ul li.last span {background:#1fb15a; color:#fff;}
+.fairness_step.ty2 {float:right;}
+.fairness_step.ty2 dd ul li {background:url(/Img/kr/contents/fairness_step_bul2.jpg) no-repeat center 88%;}
+.fairness_step.ty2 dd ul li span {border:1px solid #3964c8; color:#3964c8;}
+.fairness_step.ty2 dd ul li.last span {background:#3964c8; color:#fff;}
+.dot_box {background:url(/Img/kr/contents/box_dotbg.gif) repeat; padding:3px;}
+.dot_box span {background:#fff; display:block; padding:15px;}
+.table_list {width:100%; height:auto;}
+.table_list:after {content:""; display:block; clear:both;}
+.table_list li {padding:0 0 0 8px; margin:0; text-align:left; float:left; margin-right:30px; background:url(/Img/kr/contents/table_bul.gif) no-repeat left 11px;}
+
+/* 고교-대학연계프로그램 */
+.depth3_tab {width:100%; height:auto; margin:0 0 25px 0; overflow:hidden;}
+.depth3_tab:after {content:""; display:block; clear:both;}
+.depth3_tab li {float:left; margin-left:6px;}
+.depth3_tab li:first-child {margin-left:0;}
+.depth3_tab li a {display:block; width:140px; text-align:center; border:1px solid #d0d0d0; padding:8px 0; font-size:15px;}
+.depth3_tab li a.ov {color:#fff; background:#3497cd; border:1px solid #3497cd;}
+.tab_cont {display:none;}
+.program_img {width:100%; height:auto; text-align:center; margin-top:20px;}
+.program_img img {display:inline-block; vertical-align:top; margin:0 5px 10px 5px; width:30%; max-width:288px;}
+.program_img2 {width:100%; height:auto; text-align:center; margin-top:15px;}
+.program_img2 img {display:inline-block; vertical-align:top; width:94%; max-width:884px;}
+
+
+@media all and (max-width:1340px){
+/* 모집요강 */	
+.pdf_viewer .view iframe {height:900px;}	
+}
+
+
+@media all and (max-width:1240px){
+/* 모집요강 */	
+.pdf_viewer	{padding:0 0 0 200px;}
+.pdf_viewer .tab {width:200px;}
+.pdf_viewer .view iframe {height:860px;}	
+}
+
+
+@media all and (max-width:1140px){
+/* 모집요강 */	
+.pdf_viewer	{padding:0 0 0 180px;}
+.pdf_viewer .tab {width:180px;}	
+.pdf_viewer .view iframe {height:820px;}
+}
+
+
+@media all and (max-width:1000px){
+/* 모집요강 */
+.pdf_viewer	{padding:0;}
+.pdf_viewer .tab {display:none;}	
+}
+
+
+@media all and (max-width:840px){
+/* 신입학전형안내 동영상 */	
+.gallery_board_list li {width:32%;}
+
+/* 고교-대학연계프로그램 */
+.depth3_tab li {width:50%; margin-left:0; margin-bottom:6px;}
+.depth3_tab li a {width:auto; padding:5px 0; margin-right:3px;}
+.depth3_tab li + li a {margin-left:3px; margin-right:0;}
+.depth3_tab li + li + li a {margin-left:0; margin-right:3px;}
+.depth3_tab li + li + li + li a {margin-left:3px; margin-right:0;}
+.depth3_tab li + li + li + li + li a {margin-left:0; margin-right:3px;}
+}
+
+
+@media all and (max-width:640px){
+/* 모집요강 */
+.pdf_viewer .view {display:none;}
+.pdf_viewer .mobile {display:block;}
+.pdf_viewer .mobile strong {display:block; background:#3c97cb url(/Img/kr/contents/pdf_mob_titlebg.jpg) repeat left -5px; color:#fff; padding:15px 4%; font-size:16px;}
+.pdf_viewer .mobile .cons {border:2px solid #dcdcdc; background:#fff; border-top:0; text-align:center; padding:40px 10%;}
+.pdf_viewer .mobile .cons p {padding:0 0 0 50px; display:inline-block; vertical-align:top; background:url(/Img/kr/contents/pdf_mob_ico.png) no-repeat left top; min-height:45px; text-align:left;}
+.pdf_viewer .mobile .cons strong {display:inline-block; vertical-align:top; background:none; color:#444; font-size:14px; padding:0;}
+.pdf_viewer .mobile .cons a {background:#646464; color:#fff; display:block; width:90px; margin:20px auto 0 auto; padding:8px 0;}
+
+/* 모집요강 신청 */	
+.appli_btn a {padding:10px 20px; font-size:14px; line-height:18px;}	
+
+/* 신입학전형안내 동영상 */	
+.gallery_board_list li a span.poster {height:120px;}
+
+/* 학생부종합전형 */
+.fairness_step {width:100%; float:none;}
+.fairness_step.ty2 {width:100%; float:none; margin-top:30px;}
+}
+
+
+@media all and (max-width:480px){
+/* 모집요강 */
+.viewer_down {padding:10px 4% 15px 4%;}
+.viewer_down .down_btn {position:relative; right:auto; top:auto; margin-top:10px;}	
+.viewer_down .down_btn a:first-child {margin-left:0;} 
+
+/* 모집요강 신청 */	
+input[type="submit"].sc_btn {margin-top:5px; display:block;}
+.appli_confirm .form {padding:15px 5%;}
+.appli_confirm .form ul.input {display:block; width:auto; border-bottom:1px solid #e2e2e2; padding-bottom:20px;}
+.appli_confirm .form ul.input li {padding:0;}
+.appli_confirm .form ul.input li span.input input[type="text"].input_ty2 {width:25%;}
+.appli_confirm .form ul.input li span.title {position:relative; left:auto; top:auto;}
+.appli_confirm .form input[type="submit"] {display:block; margin:20px auto 0 auto; width:100px; height:50px; font-size:15px;} 	
+input[type="text"].depart_1 {display:block;}
+input[type="text"].depart_2 {display:block; margin-top:5px;}
+
+/* 신입학전형안내 동영상 */	
+.gallery_board_list li {width:49%; margin-bottom:10px;}
+.gallery_board_list li + li + li {margin-left:0;}
+.gallery_board_list li a span.poster {height:100px;}
+}
+

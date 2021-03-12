@@ -1,0 +1,9 @@
+@charset "utf-8";
+
+@font-face {
+	font-family: ulR;
+	src: url('./UNIVERSLIGHTR.eot');
+	src: local('?'),
+	url('./UNIVERSLIGHTR.woff') format('woff'),
+	url('./UNIVERSLIGHTR.ttf') format('truetype')
+}

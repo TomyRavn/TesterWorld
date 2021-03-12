@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<settings>
+      <setting name="mapUnderscoreToCamelCase" value="true" />
+   </settings>
+
+	<typeAliases>
+		<typeAlias type="kr.co.testerworld.account.service.AccountVO" alias="accountVO" />
+		<typeAlias type="kr.co.testerworld.code.service.CodeVO" alias="codeVO" />
+		<typeAlias type="kr.co.testerworld.board.service.BoardVO" alias="boardVO"/>
+		<typeAlias type="kr.co.testerworld.board.service.ReplyVO" alias="replyVO"/>
+	</typeAliases>
+	
+	<mappers>
+		<mapper resource="sqlmap/user.xml"/>
+		<mapper resource="sqlmap/code.xml" />
+		<mapper resource="sqlmap/board.xml" />
+		<mapper resource="sqlmap/reply.xml" />
+	</mappers>
+
+</configuration>

@@ -1,0 +1,77 @@
+/*=================================*/
+/* Nivo Slider Demo
+/* November 2010
+/* By: Gilbert Pellegrom
+/* http://dev7studios.com
+/*=================================*/
+
+/*====================*/
+/*=== Reset Styles ===*/
+/*====================*/
+
+table {
+	border-collapse:separate;
+	border-spacing:0;
+}
+caption, th, td {
+	text-align:left;
+	font-weight:normal;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content:"";
+}
+blockquote, q {
+	quotes:"" "";
+}
+/* HTML5 tags */
+header, section, footer,
+aside, nav, article, figure {
+	display: block;
+}
+
+/*===================*/
+/*=== Main Styles ===*/
+/*===================*/
+
+a, a:visited {
+	color:blue;
+	text-decoration:none;
+}
+a:hover, a:active {
+	color:#000;
+	text-decoration:none;
+}
+
+#wrapper {height:530px;}
+.theme-default #slider {
+    margin:0px auto 0 auto;
+    width:762px; /* Make sure your images are the same size */
+    /*height:246px; /* Make sure your images are the same size */
+}
+.theme-pascal.slider-wrapper,
+.theme-orman.slider-wrapper {
+    margin-top:150px;
+}
+
+/*====================*/
+/*=== Other Styles ===*/
+/*====================*/
+.clear {
+	clear:both;
+}
+
+#slider .nivo-controlNav {
+	position:absolute;
+	width:770px;
+	bottom:-75px; /* Put the nav below the slider */
+	left:0;
+}
+#slider .nivo-controlNav img {
+	display:inline; /* Unhide the thumbnails */
+	position:relative;
+	margin-right:8px;
+}
+
+.nivo-control .no_mar {margin:0!important;}
+#wrapper {position:relative;}

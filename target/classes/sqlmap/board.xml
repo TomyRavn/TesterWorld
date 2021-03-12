@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="board">
+
+	<resultMap type="boardVO" id="boardMap">
+		<result property="bdIdx" 				column="BD_IDX"/>
+		<result property="bdTitle" 				column="BD_TITLE"/>
+		<result property="bdWriter" 			column="BD_WRITER"/>
+		<result property="bdCn" 				column="BD_CN"/>
+		<result property="bdRegDate" 			column="BD_REG_DATE"/>
+		<result property="insIp" 				column="INS_IP"/>
+		<result property="uptIp" 				column="UPT_IP"/>
+		<result property="bdCnt" 				column="BD_CNT"/>
+		<result property="replyCnt"             column="REPLY_CNT"/>
+	</resultMap>
+
+	<select id="selectBoardList" resultMap="boardMap" parameterType="kr.co.testerworld.util.Pager">
+		SELECT
+			BD_IDX,
+			BD_TITLE,
+			BD_WRITER,
+			BD_CN,
+			BD_REG_DATE,
+			INS_IP,
+			UPT_IP,
+			BD_CNT,
+				(SELECT COUNT(R.REP_IDX)
+				FROM REPLY R
+				WHERE R.REP_REF_BD_IDX = board.BD_IDX) as REPLY_CNT
+		FROM
+			board
+		<where>
+			<if test='search.equals("a")'>
+				BD_TITLE LIKE CONCAT('%', #{keyword}, '%') or
+				BD_WRITER LIKE CONCAT('%', #{keyword}, '%') or
+				BD_IDX LIKE CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test='search.equals("b")'>BD_TITLE LIKE CONCAT('%', #{keyword}, '%')</if>
+			<if test='search.equals("c")'>BD_WRITER LIKE CONCAT('%', #{keyword}, '%')</if>
+			<if test='search.equals("d")'>BD_IDX LIKE CONCAT('%', #{keyword}, '%')</if>
+		</where>
+		<if test="header == 0">
+			ORDER BY
+				BD_IDX
+			<if test="order == 1">
+				DESC,
+				BD_REG_DATE DESC
+			</if>
+			<if test="order == 0">
+				ASC,
+				BD_REG_DATE ASC
+			</if>
+		</if>
+		<if test="header == 1">
+			ORDER BY
+				BD_REG_DATE
+			<if test="order == 1">
+				DESC,
+				BD_IDX DESC
+			</if>
+			<if test="order == 0">
+				ASC,
+				BD_IDX ASC
+			</if>
+		</if>
+		LIMIT
+			#{firstIdx}, #{perPage}
+	</select>
+	
+	<insert id="insertBoard" parameterType="boardVO" useGeneratedKeys="true" keyProperty="bdIdx">
+		INSERT INTO
+			board(
+				BD_TITLE,
+				BD_WRITER,
+				BD_CN,
+				BD_REG_DATE,
+				INS_IP
+			)
+		VALUES(
+				#{bdTitle},
+				#{bdWriter},
+				#{bdCn},
+				now(),
+				#{insIp}
+			)
+	</insert>
+	
+	<delete id="deleteBoard" parameterType="boardVO">
+		DELETE FROM
+			board
+		WHERE
+			BD_IDX = #{bdIdx}
+	</delete>
+	
+	<select id="selectBoard" parameterType="boardVO" resultMap="boardMap">
+		SELECT
+			BD_IDX,
+			BD_TITLE,
+			BD_WRITER,
+			BD_CN,
+			BD_REG_DATE,
+			INS_IP,
+			UPT_IP,
+			BD_CNT,
+			(SELECT COUNT(R.REP_IDX)
+				FROM REPLY R
+				WHERE R.REP_REF_BD_IDX = board.BD_IDX) as REPLY_CNT
+		FROM
+			board
+		WHERE
+			BD_IDX = #{bdIdx}
+	</select>
+	
+	<update id="updateBoard" parameterType="boardVO">
+		UPDATE
+			board
+		SET
+			BD_TITLE = #{bdTitle},
+			BD_CN = #{bdCn},
+			UPT_IP = #{uptIp}
+		WHERE
+			BD_IDX = #{bdIdx}
+	</update>
+	
+	<update id="updateViewCount" parameterType="boardVO">
+		UPDATE
+			board
+		SET
+			BD_CNT = BD_CNT + 1
+		WHERE
+			BD_IDX = #{bdIdx}
+	</update>
+	
+	<select id="totalCount" resultType="int" parameterType="kr.co.testerworld.util.Pager">
+		SELECT
+			COUNT(BD_IDX)
+		FROM
+			board
+		<if test="search != null">
+			<where>
+				<if test='search.equals("a")'>
+					BD_TITLE LIKE CONCAT('%', #{keyword}, '%') or
+					BD_WRITER LIKE CONCAT('%', #{keyword}, '%') or
+					BD_IDX LIKE CONCAT('%', #{keyword}, '%')
+				</if>
+				<if test='search.equals("b")'>BD_TITLE LIKE CONCAT('%', #{keyword}, '%')</if>
+				<if test='search.equals("c")'>BD_WRITER LIKE CONCAT('%', #{keyword}, '%')</if>
+				<if test='search.equals("d")'>BD_IDX LIKE CONCAT('%', #{keyword}, '%')</if>
+			</where>
+		</if>
+	</select>
+	
+	<insert id="dummy" parameterType="boardVO" useGeneratedKeys="true" keyProperty="bdIdx">
+		INSERT INTO 
+			board(
+				BD_TITLE,
+				BD_WRITER,
+				BD_CN,
+				BD_REG_DATE,
+				INS_IP
+			)
+		VALUES(
+				#{bdTitle},
+				#{bdWriter},
+				#{bdCn},
+				now(),
+				#{insIp}
+			)
+	</insert>
+</mapper>

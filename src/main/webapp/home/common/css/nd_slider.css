@@ -1,0 +1,45 @@
+
+.wrap_box {
+	position: relative; 
+	margin: 50px 0 0;
+	z-index: 2000;
+}
+.wrap_box .visual {
+	height: 420px;
+	margin-top: 0px;
+}
+.wrap_box .box {
+	width: 100%;
+	margin: 4px auto 0;
+	position: relative;
+}
+.wrap_box .visual .pht {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 921px;
+	height: 415px;
+}
+.wrap_box .visual .control {
+	position: absolute;
+	top: 80px;
+	right: 30px;
+	width: 150px;
+}
+.wrap_box .visual .control .fl {
+	margin-right: 8px;
+	cursor: pointer;
+}
+
+.wrap_box .visual .prev {
+	position: absolute;
+	top: 197px;
+	left: 19px;
+	cursor: pointer;
+}
+.wrap_box .visual .next {
+	position: absolute;
+	top: 197px;
+	right: 298px;
+	cursor: pointer;
+}

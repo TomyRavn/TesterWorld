@@ -1,0 +1,7 @@
+설명 : input 태그에 rel 값이 있을 경우 체크
+옵션 : en,int,kr (중복으로 사용);
+예시 : 영문및 숫자만 입력가능 -> <input type='text' name='test' rel='en int'>
+
+jQuery(function(){
+   jQuery("input[rel]").keyup(function(){langChk(this)});}
+});

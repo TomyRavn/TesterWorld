@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="reply">
+
+	<resultMap type="replyVO" id="replyMap">
+		<result property="repIdx" 					column="REP_IDX"/>
+		<result property="repCn" 					column="REP_CN"/>
+		<result property="repWriter" 				column="REP_WRITER"/>
+		<result property="repLike" 					column="REP_LIKE"/>
+		<result property="repInsDate" 				column="REP_INS_DATE"/>
+		<result property="repUptDate" 				column="REP_UPT_DATE"/>
+		<result property="repDelDate" 				column="REP_DEL_DATE"/>
+		<result property="repInsIp" 				column="REP_INS_IP"/>
+		<result property="repUptIp" 				column="REP_UPT_IP"/>
+		<result property="repDelIp" 				column="REP_DEL_IP"/>
+		<result property="repRefBdIdx" 				column="REP_REF_BD_IDX"/>
+		<result property="repPw" 					column="REP_PW"/>
+	</resultMap>
+
+	<select id="selectReplyList" resultMap="replyMap" parameterType="boardVO">
+		SELECT
+			REP_IDX,
+			REP_CN,
+			REP_WRITER,
+			REP_LIKE,
+			REP_INS_DATE,
+			REP_UPT_DATE,
+			REP_DEL_DATE,
+			REP_INS_IP,
+			REP_UPT_IP,
+			REP_DEL_IP,
+			REP_REF_BD_IDX,
+			REP_PW
+		FROM
+			reply
+		WHERE
+			REP_REF_BD_IDX = #{repRefBdIdx}
+	</select>
+	
+	<select id="selectReply" resultMap="replyMap" parameterType="replyVO">
+		SELECT
+			REP_IDX,
+			REP_CN,
+			REP_WRITER,
+			REP_LIKE,
+			REP_INS_DATE,
+			REP_UPT_DATE,
+			REP_DEL_DATE,
+			REP_INS_IP,
+			REP_UPT_IP,
+			REP_DEL_IP,
+			REP_REF_BD_IDX,
+			REP_PW
+		FROM
+			reply
+		WHERE
+			REP_IDX = #{repIdx}
+		AND
+			REP_PW = #{repPw}
+	</select>
+	
+	<insert id="insertReply" parameterType="replyVO" useGeneratedKeys="true" keyColumn="repIdx">
+		INSERT INTO reply(
+			REP_CN,
+			REP_WRITER,
+			REP_INS_DATE,
+			REP_INS_IP,
+			REP_REF_BD_IDX,
+			REP_PW
+			)
+		VALUES(
+			#{repCn},
+			#{repWriter},
+			now(),
+			#{repInsIp},
+			#{repRefBdIdx},
+			<choose>
+				<when test="repPw != null">
+					#{repPw}
+				</when>
+				<otherwise>
+					null
+				</otherwise>
+			</choose>
+			)
+	</insert>
+</mapper>

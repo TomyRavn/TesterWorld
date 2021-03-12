@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="user">
+	
+	<resultMap type="accountVO" id="accountMap" >
+		<result property="userIdx" 		column="USER_IDX" />
+		<result property="userId" 		column="USER_ID" />
+		<result property="userPw" 		column="USER_PW" />
+		<result property="userEm" 		column="USER_EM" />
+		<result property="userTel" 		column="USER_TEL" />
+		<result property="userNm" 		column="USER_NM" />
+		<result property="userAuth" 	column="USER_AUTH" />
+		<result property="insDttm" 		column="INS_DTTM" />
+		<result property="insIdx" 		column="INS_IDX" />
+		<result property="insIp" 		column="INS_IP" />
+		<result property="uptDttm" 		column="UPT_DTTM" />
+		<result property="uptIdx" 		column="UPT_IDX" />
+		<result property="uptIp" 		column="UPT_IP" />
+		<result property="delDttm" 		column="DEL_DTTM" />
+		<result property="delIdx" 		column="DEL_IDX" />
+		<result property="delIp" 		column="DEL_IP" />
+		<result property="userSeq"		column="USER_SEQ" />
+	</resultMap>
+	
+	<resultMap type="accountVO" id="loginMap">
+		<result property="userIdx" 		column="USER_IDX" />
+		<result property="userId" 		column="USER_ID" />
+		<result property="userPw" 		column="USER_PW" />
+		<result property="userEm" 		column="USER_EM" />
+		<result property="userTel" 		column="USER_TEL" />
+		<result property="userNm" 		column="USER_NM" />
+		<result property="userAuth" 	column="USER_AUTH" />
+		<result property="delDttm" 		column="DEL_DTTM" />
+	</resultMap>
+
+	<select id="login" parameterType="accountVO" resultMap="loginMap">
+		SELECT
+			USER_IDX,
+			USER_ID,
+			USER_PW,
+			USER_EM,
+			USER_TEL,
+			USER_NM,
+			USER_AUTH,
+			DEL_DTTM
+		FROM
+			user
+		WHERE
+			DEL_DTTM IS NULL
+			AND
+			USER_ID = #{userId}
+	</select>
+	
+	<select id="checkSeqNum" resultType="int">
+		SELECT
+			MAX(USER_SEQ)
+		FROM
+			user
+	</select>
+	
+	<insert id="add" parameterType="accountVO" useGeneratedKeys="true" keyProperty="userSeq">
+		INSERT INTO user(
+			USER_IDX,
+			USER_ID,
+			USER_PW,
+			USER_EM,
+			USER_TEL,
+			USER_NM,
+			INS_DTTM,
+			INS_IP
+		)VALUES(
+			#{userIdx},
+			#{userId},
+			#{userPw},
+			#{userEm},
+			#{userTel},
+			#{userNm},
+			SYSDATE(),
+			#{insIp}
+		)
+	</insert>
+	
+	<select id="selectUserList" parameterType="kr.co.testerworld.util.Pager" resultMap="accountMap">
+		SELECT
+			USER_IDX,
+			USER_ID,
+			USER_PW,
+			USER_EM,
+			USER_TEL,
+			USER_NM,
+			USER_AUTH,
+			INS_DTTM,
+			INS_IDX,
+			INS_IP,
+			UPT_DTTM,
+			UPT_IDX,
+			UPT_IP,
+			DEL_DTTM,
+			DEL_IDX,
+			DEL_IP,
+			USER_SEQ
+		FROM
+			user
+		<where>
+			<if test='search.equals("a")'>
+				USER_ID LIKE CONCAT('%', #{keyword}, '%') or
+				USER_EM LIKE CONCAT('%', #{keyword}, '%') or
+				USER_TEL LIKE CONCAT('%', #{keyword}, '%') or
+				USER_NM LIKE CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test='search.equals("b")'>USER_ID LIKE CONCAT('%', #{keyword}, '%')</if>
+			<if test='search.equals("c")'>USER_EM LIKE CONCAT('%', #{keyword}, '%')</if>
+			<if test='search.equals("d")'>USER_TEL LIKE CONCAT('%', #{keyword}, '%')</if>
+			<if test='search.equals("e")'>USER_NM LIKE CONCAT('%', #{keyword}, '%')</if>
+		</where>
+		<if test="header == 0">
+			ORDER BY
+				USER_ID
+			<if test="order == 1">
+				DESC,
+				INS_DTTM DESC,
+				INS_IP DESC
+			</if>
+			<if test="order == 0">
+				ASC,
+				INS_DTTM ASC,
+				INS_IP ASC
+			</if>
+		</if>
+		<if test="header == 1">
+			ORDER BY
+				INS_DTTM
+			<if test="order == 1">
+				DESC,
+				USER_ID DESC,
+				INS_IP DESC
+			</if>
+			<if test="order == 0">
+				ASC,
+				USER_ID ASC,
+				INS_IP ASC
+			</if>
+		</if>
+		<if test="header == 2">
+			ORDER BY
+				INS_IP
+			<if test="order == 1">
+				DESC,
+				USER_ID DESC,
+				INS_DTTM DESC
+			</if>
+			<if test="order == 0">
+				ASC,
+				USER_ID ASC,
+				INS_DTTM ASC
+			</if>
+		</if>
+		<if test="header == null">
+			ORDER BY
+				INS_DTTM DESC,
+				USER_ID ASC,
+				INS_IP DESC
+		</if>
+		LIMIT
+			#{firstIdx}, #{perPage}
+	</select>
+	
+	<select id="totalCount" resultType="int" parameterType="kr.co.testerworld.util.Pager">
+		SELECT
+			COUNT(USER_IDX)
+		FROM
+			user
+		<if test="search != null">
+			<where>
+				<if test='search.equals("a")'>
+					USER_ID LIKE CONCAT('%', #{keyword}, '%') or
+					USER_EM LIKE CONCAT('%', #{keyword}, '%') or
+					USER_TEL LIKE CONCAT('%', #{keyword}, '%') or
+					USER_NM LIKE CONCAT('%', #{keyword}, '%')
+				</if>
+				<if test='search.equals("b")'>USER_ID LIKE CONCAT('%', #{keyword}, '%')</if>
+				<if test='search.equals("c")'>USER_EM LIKE CONCAT('%', #{keyword}, '%')</if>
+				<if test='search.equals("d")'>USER_TEL LIKE CONCAT('%', #{keyword}, '%')</if>
+				<if test='search.equals("e")'>USER_NM LIKE CONCAT('%', #{keyword}, '%')</if>
+			</where>
+		</if>
+	</select>
+	
+	<delete id="deleteUser" parameterType="accountVO">
+		DELETE
+		FROM
+			user
+		WHERE
+			USER_ID = #{userId}
+	</delete>
+	
+	<select id="duplicateIdCheck" parameterType="accountVO" resultType="int">
+		SELECT
+			COUNT(USER_ID)
+		FROM
+			user
+		WHERE
+			USER_ID = #{userId}
+	</select>
+	
+	<select id="selectUserFromId" parameterType="accountVO" resultType="accountVO">
+		SELECT
+			USER_IDX,
+			USER_ID,
+			USER_PW,
+			USER_EM,
+			USER_TEL,
+			USER_NM,
+			USER_AUTH
+		FROM
+			user
+		WHERE
+			USER_ID = #{userId}
+	</select>
+	
+	<select id="selectUserFromIdx" parameterType="accountVO" resultType="accountVO">
+		SELECT
+			USER_IDX,
+			USER_ID,
+			USER_PW,
+			USER_EM,
+			USER_TEL,
+			USER_NM,
+			USER_AUTH
+		FROM
+			user
+		WHERE
+			USER_IDX = #{userIdx}
+	</select>
+	
+	<update id="updateUser" parameterType="accountVO">
+		UPDATE
+			user
+		SET
+			USER_EM = #{userEm},
+			USER_TEL = #{userTel},
+			USER_NM = #{userNm},
+			UPT_DTTM = now(),
+			UPT_IP = #{uptIp}
+		WHERE
+			USER_IDX = #{userIdx}
+	</update>
+	
+	<update id="upgradeUser" parameterType="accountVO">
+		UPDATE
+			user
+		SET
+			<if test='userAuth.equals("M")'>
+				USER_AUTH = 'A',
+				UPT_DTTM = now(),
+				UPT_IP = #{uptIp}
+			</if>
+			<if test='userAuth.equals("N")'>
+				USER_AUTH = 'M',
+				UPT_DTTM = now(),
+				UPT_IP = #{uptIp}
+			</if>
+		WHERE
+			USER_IDX = #{userIdx}
+	</update>
+	
+	<update id="downgradeUser" parameterType="accountVO">
+		UPDATE
+			user
+		SET
+			<if test='userAuth.equals("A")'>
+				USER_AUTH = 'M',
+				UPT_DTTM = now(),
+				UPT_IP = #{uptIp}
+			</if>
+			<if test='userAuth.equals("M")'>
+				USER_AUTH = 'N',
+				UPT_DTTM = now(),
+				UPT_IP = #{uptIp}
+			</if>
+		WHERE
+			USER_IDX = #{userIdx}
+	</update>
+	
+	<select id="selectUserGradeData" parameterType="accountVO" resultType="accountVO">
+		SELECT
+			USER_IDX,
+			USER_ID,
+			USER_AUTH,
+			UPT_DTTM,
+			UPT_IDX,
+			UPT_IP
+		FROM
+			user
+		WHERE
+			USER_ID = #{userId}
+	</select>
+</mapper>

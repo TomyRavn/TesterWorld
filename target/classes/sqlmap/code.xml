@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="code">
+
+	<resultMap type="codeVO" id="codeMap">
+		<result property="codeIdx" 				column="CODE_IDX"/>
+		<result property="codeNm" 				column="CODE_NM"/>
+		<result property="codeCn" 				column="CODE_CN"/>
+		<result property="upperCodeIdx" 		column="UPPER_CODE_IDX"/>
+		<result property="insIp" 				column="INS_IP"/>
+	</resultMap>
+	
+	
+	<insert id="insertCode" parameterType="codeVO" useGeneratedKeys="true" keyProperty="codeSeq">
+		INSERT INTO code(
+			CODE_IDX, 
+			CODE_NM, 
+			CODE_CN, 
+			UPPER_CODE_IDX,
+			INS_IP
+		)VALUES(
+			#{codeIdx}, 
+			#{codeNm}, 
+			#{codeCn},
+			<choose>
+				<when test="upperCodeIdx != null">
+					#{upperCodeIdx},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			#{insIp}
+		)
+	</insert>
+	
+	<select id="checkSeqNum" resultType="int">
+		SELECT
+			MAX(CODE_SEQ)
+		FROM
+			code
+	</select>
+	
+	<select id="selectCodeList" resultMap="codeMap">
+		SELECT
+			CODE_IDX,
+			CODE_NM,
+			CODE_CN,
+			UPPER_CODE_IDX,
+			INS_IP
+		FROM
+			code
+		ORDER BY
+			CODE_SEQ ASC
+	</select>
+	
+	<select id="selectCode" parameterType="codeVO" resultMap="codeMap">
+		SELECT
+			CODE_IDX,
+			CODE_NM,
+			CODE_CN,
+			UPPER_CODE_IDX,
+			INS_IP
+		FROM
+			code
+		WHERE
+			CODE_IDX = #{codeIdx}
+	</select>
+	
+	<select id="selectDuplicate" parameterType="codeVO" resultType="int">
+		SELECT
+		EXISTS(
+				SELECT 
+					CODE_NM, UPPER_CODE_IDX 
+				FROM
+					code
+				WHERE
+					CODE_NM = #{codeNm}
+				AND (
+						<choose>
+							<when test="upperCodeIdx != null">
+								UPPER_CODE_IDX = #{upperCodeIdx} OR
+							</when>
+						</choose>
+						UPPER_CODE_IDX is null
+					)
+			);
+	</select>
+	
+	<select id="selectExists" resultType="int">
+		SELECT
+		EXISTS(
+				SELECT
+					CODE_NM 
+				FROM
+					CODE
+			);
+	</select>
+	
+</mapper>
